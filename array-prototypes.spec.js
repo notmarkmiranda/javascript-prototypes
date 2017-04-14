@@ -4,30 +4,29 @@ describe ('Array Prototypes - map()', function() {
     var expectedReturn = [1, 2, 3, 4, 5, 6]
 
     expect(
-      // this is just an example, move on to the next one
       start.map(function(num) { return num + 1 })
     ).toEqual(expectedReturn)
   });
 
-  xit('uses map() to convert to celsius', function() {
+  it('uses map() to convert to celsius', function() {
     var fahrenheit = [0, 32, 45, 50, 75, 80, 99, 120]
     var expectedReturn = [-18, 0, 7, 10, 24, 27, 37, 49]
 
     expect(
-      // your code goes here
+      fahrenheit.map(function(num) { return Math.round((num - 32) * 5 / 9) })
     ).toEqual(expectedReturn);
   });
 
-  xit('uses map() to fix formatting and concat index', function() {
+  it('uses map() to fix formatting and concat index', function() {
     var words = ['fIRst', 'seconD', 'third', 'FOURTH']
     var expectedReturn = ['First - 1', 'Second - 2', 'Third - 3', 'Fourth - 4']
 
     expect(
-      // your code goes here
+      words.map(function(word, index) { return word[0].toUpperCase() + word.slice(1).toLowerCase() + ' - ' + (index + 1) })
     ).toEqual(expectedReturn)
   })
 
-  xit('uses map() to rewrite attributes on objects', function() {
+  it('uses map() to rewrite attributes on objects', function() {
     var start = [
       { name: "mark", startingYear: 2016 },
       { name: "sal", startingYear: 2012 },
@@ -50,34 +49,37 @@ describe ('Array Prototypes - map()', function() {
     ]
 
     expect(
-      // your code goes here
+      start.map(function(obj) {
+        return {
+          firstName: obj.name[0].toUpperCase() + obj.name.slice(1).toLowerCase(),
+          yearsWorked: (2017 - obj.startingYear)
+        }
+      })
     ).toEqual(end)
   })
 });
 
 
 describe('Array Prototypes - filter()', function() {
-  xit('uses filter() to filter out even numbers', function() {
+  it('uses filter() to filter out even numbers', function() {
     var startingArray = [34, 17, 26, 9, 47, 0, 37, 5, 4, 2, 16, 119, 117, 118]
     var endingArray = [17, 9, 47, 37, 5, 119, 117]
 
     expect(
-      // your code goes here
-
+      startingArray.filter(function(number) { return number % 2 !== 0 })
     ).toEqual(endingArray)
   })
 
-  xit('uses filter() to filter based on word length greater than 3', function() {
+  it('uses filter() to filter based on word length greater than 3', function() {
     var startingArray = ['bear', 'cat', 'elephant', 'kangaroo', 'dog', 'zebra', 'pig']
     var endingArray = ['bear', 'elephant', 'kangaroo', 'zebra']
 
     expect(
-      // your code goes here
-
+      startingArray.filter(function(animal) { return animal.length > 3 })
     ).toEqual(endingArray)
   })
 
-  xit('uses filter() with object attributes - balance greater than 100', function() {
+  it('uses filter() with object attributes - balance greater than 100', function() {
     var startingPeople = [
       { name: "Mark", balance: '100' },
       { name: "Sal", balance: '101' },
@@ -96,27 +98,24 @@ describe('Array Prototypes - filter()', function() {
     ]
 
     expect(
-      // your code goes here
-
+      startingPeople.filter(function(obj) { return obj.balance > 100 })
     ).toEqual(endingPeople)
   })
 
 })
 
 describe('Array Prototypes - reduce()', function() {
-  xit('uses reduce() to sum numbers', function() {
+  it('uses reduce() to sum numbers', function() {
     var startingArray = [125, 16, 9234, 323, 21, 499, 28]
     expect(
-      // your code goes here
-
+      startingArray.reduce(function(sum, num) { return sum + num }, 0)
     ).toEqual(10246)
   })
 
-  xit('uses reduce() to add word lengths', function() {
+  it('uses reduce() to add word lengths', function() {
     var startingArray = ['banana', 'pear', 'apple', 'orange', 'lemon', 'mango']
     expect(
-      // your code goes here
-
+      startingArray.reduce(function(sum, word) { return sum + word.length }, 0)
     ).toEqual(31)
   })
 
